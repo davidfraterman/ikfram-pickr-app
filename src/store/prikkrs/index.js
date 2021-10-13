@@ -17,6 +17,9 @@ export default {
     prikkrs(state) {
       return state.prikkrs;
     },
+    hasPrikkrs(getters) {
+      return getters.prikkrs && getters.prikkrs.length > 0;
+    },
   },
   actions: {
     async fetchPrikkrs(context) {

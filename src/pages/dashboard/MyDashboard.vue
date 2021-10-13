@@ -19,6 +19,10 @@
           :description="item.description"
         ></dashboard-item>
       </ul>
+      <p class="noPrikkrs" v-else>
+        U heeft nog geen Prikkrs, klik op bovenstaande knop om er een toe te
+        voegen.
+      </p>
     </base-card>
   </section>
 </template>
@@ -28,9 +32,7 @@ import DashboardItem from "../../components/dashboard/DashboardItem.vue";
 
 export default {
   data() {
-    return {
-      hasPrikkrs: true,
-    };
+    return {};
   },
   created() {
     this.loadPrikkrs();
@@ -42,6 +44,9 @@ export default {
   computed: {
     myPrikkrs() {
       return this.$store.getters["prikkrs/prikkrs"];
+    },
+    hasPrikkrs() {
+      return this.$store.getters["prikkrs/hasPrikkrs"];
     },
   },
   methods: {
@@ -62,5 +67,8 @@ export default {
 <style scoped>
 h1 {
   font-size: 300%;
+}
+.noPrikkrs {
+  margin-top: 3rem;
 }
 </style>
