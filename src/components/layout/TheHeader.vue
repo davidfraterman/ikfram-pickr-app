@@ -1,14 +1,20 @@
 <template>
   <header>
     <nav>
-      <h1><router-link to="/">Prikkr</router-link></h1>
+      <h1>
+        <router-link to="/">Prikkr</router-link>
+      </h1>
       <ul>
-        <li v-if="isLoggedin">
+        <li v-if="isLoggedIn">
           <router-link to="/dashboard">Dashboard</router-link>
         </li>
 
-        <li v-else><router-link>Inloggen</router-link></li>
-        <li><router-link>Uitloggen</router-link></li>
+        <li v-if="!isLoggedIn">
+          <router-link to="/registreren">Inloggen</router-link>
+        </li>
+        <li v-else>
+          <base-button mode="secondary" @click="logout">Uitloggen</base-button>
+        </li>
       </ul>
     </nav>
   </header>
@@ -18,7 +24,7 @@
 export default {
   computed: {
     isLoggedIn() {
-      return true;
+      return this.$store.getters.isAuthenticated;
     },
   },
   methods: {
@@ -58,6 +64,13 @@ h1 a:hover {
 a:active,
 a.router-link-active {
   color: #24b4d3;
+  text-decoration: underline;
+}
+
+h1 a:active,
+h1 a.router-link-active {
+  color: white;
+  text-decoration: none;
 }
 
 h1 {
