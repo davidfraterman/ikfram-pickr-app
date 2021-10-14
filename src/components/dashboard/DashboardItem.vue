@@ -11,7 +11,10 @@
     <base-button class="btn" mode="secondary" link :to="prikkrLink"
       >Bekijk Prikkr</base-button
     >
-    <p class="id">Uniek Prikkr ID: {{ id }}</p>
+    <p class="id">
+      <strong>Uniek Prikkr ID: </strong>
+      {{ "localhost:8080/prikkr/" + userId + "/" + id }}
+    </p>
   </section>
 </template>
 
@@ -24,6 +27,9 @@ export default {
   computed: {
     prikkrLink() {
       return this.$route.path + "/" + this.id;
+    },
+    userId() {
+      return this.$store.getters["userId"];
     },
   },
 };

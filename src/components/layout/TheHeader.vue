@@ -1,19 +1,28 @@
 <template>
   <header>
     <nav>
-      <h1>
+      <h1 v-if="isLoggedIn">
+        <router-link to="/dashboard">Prikkr</router-link>
+      </h1>
+      <h1 v-else>
         <router-link to="/">Prikkr</router-link>
       </h1>
       <ul>
-        <li v-if="isLoggedIn">
-          <router-link to="/dashboard">Dashboard</router-link>
-        </li>
-
         <li v-if="!isLoggedIn">
-          <router-link to="/registreren">Inloggen</router-link>
+          <router-link to="/registreren">Mijn Dashboard</router-link>
         </li>
-        <li v-else>
-          <base-button mode="secondary" @click="logout">Uitloggen</base-button>
+      </ul>
+      <ul v-if="isLoggedIn">
+        <li>
+          <router-link to="/dashboard">Mijn Dashboard</router-link>
+        </li>
+        <li>
+          <router-link to="/nieuw">
+            <button class="newPrikkr">+ Nieuwe Prikkr</button></router-link
+          >
+        </li>
+        <li>
+          <button class="logout" @click="logout">Uitloggen</button>
         </li>
       </ul>
     </nav>
@@ -29,6 +38,7 @@ export default {
   },
   methods: {
     logout() {
+      this.$store.dispatch("logout");
       this.$router.replace("/registreren");
     },
   },
@@ -44,6 +54,30 @@ header {
   color: white;
   justify-content: center;
   align-items: center;
+}
+
+button {
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font: inherit;
+  background-color: #24b4d3;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.logout {
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font: inherit;
+  background-color: transparent;
+  border: 2px solid #24b4d3;
+  color: #24b4d3;
+  cursor: pointer;
+  border-radius: 8px;
+  display: inline-block;
 }
 
 header a {
@@ -64,7 +98,6 @@ h1 a:hover {
 a:active,
 a.router-link-active {
   color: #24b4d3;
-  text-decoration: underline;
 }
 
 h1 a:active,
@@ -101,5 +134,36 @@ header ul {
 
 li {
   margin: 0 0.5rem;
+}
+
+@media only screen and (max-width: 690px) {
+  header nav {
+    width: 90%;
+    margin: auto;
+    display: block;
+  }
+
+  header {
+    width: 100%;
+    height: auto;
+    background-color: #363636;
+    display: block;
+    padding-bottom: 2rem;
+  }
+
+  header h1 {
+    text-align: center;
+  }
+
+  header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  header ul li {
+    text-align: center;
+  }
 }
 </style>

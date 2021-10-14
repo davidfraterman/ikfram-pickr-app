@@ -16,9 +16,20 @@
       </div>
       <div class="form-control">
         <label for="dateStart">Vanaf</label>
-        <input type="date" id="dateStart" v-model.trim="dateStart" />
+        <input
+          type="date"
+          :min="min"
+          :max="dateEnd"
+          id="dateStart"
+          v-model.trim="dateStart"
+        />
         <label for="dateEnd">Tot</label>
-        <input type="date" id="dateEnd" v-model.trim="dateEnd" />
+        <input
+          type="date"
+          :min="dateStart || today"
+          id="dateEnd"
+          v-model.trim="dateEnd"
+        />
       </div>
       <p class="errors" v-if="!formIsValid">
         Please enter a valid email and non-empty message.
@@ -43,7 +54,17 @@ export default {
       formIsValid: true,
     };
   },
-  computed: {},
+  computed: {
+    min() {
+      return (
+        new Date().getFullYear() +
+        "-" +
+        (new Date().getMonth() + 1) +
+        "-" +
+        new Date().getDate()
+      );
+    },
+  },
   methods: {
     submitForm() {
       this.formIsValid = true;

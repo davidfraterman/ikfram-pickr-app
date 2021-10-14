@@ -33,7 +33,7 @@ const router = createRouter({
       component: CreatePrikkr,
       meta: { requiresAuth: true },
     },
-    { path: "/prikkr/:id", component: PrikkrPage },
+    { path: "/prikkr/:creatorId/:prikkrId", component: PrikkrPage },
     { path: "/:notFound(.*)", component: NotFound },
   ],
 });
