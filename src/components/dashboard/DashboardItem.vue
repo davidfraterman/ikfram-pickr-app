@@ -1,5 +1,5 @@
 <template>
-  <section class="card">
+  <base-card>
     <router-link :to="prikkrLink">
       <h3 class="title">{{ title }}</h3>
     </router-link>
@@ -15,7 +15,7 @@
       <strong>Uniek Prikkr ID: </strong>
       {{ "localhost:8080/prikkr/" + userId + "/" + id }}
     </p>
-  </section>
+  </base-card>
 </template>
 
 <script>

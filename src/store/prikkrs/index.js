@@ -29,38 +29,33 @@ export default {
     },
   },
   actions: {
-    async sendPrikkrResponse(context, payload) {
-      const newPrikkr = {
-        title: payload.title,
-        description: payload.description,
-        dateStart: payload.dateStart,
-        dateEnd: payload.dateEnd,
-        
+    async sendPrikkrResponse(payload) {
+      const newAnswer = {
+        firstDate: payload.firstDate,
+        secondDate: payload.secondDate,
+        thirdDate: payload.thirdDate,
+        cantDate: payload.cantDate,
       };
 
-      console.log(newPrikkr);
-      console.log("payload" + payload.creatorId);
-
       const response = await fetch(
-        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/prikkrs/${payload.creatorId}.json`,
+        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/answers/${payload.creatorId}/${payload.prikkrId}.json`,
         {
           method: "POST",
-          body: JSON.stringify(newPrikkr),
+          body: JSON.stringify(newAnswer),
         }
       );
 
       const responseData = await response.json();
-      console.log(JSON.stringify(newPrikkr));
+
+      console.log("newanswer: " + JSON.stringify(newAnswer));
+      console.log("newanswer: " + newAnswer);
+      console.log("payload: " + payload.creatorId);
 
       if (!response.ok) {
         const error = new Error(responseData.message);
-        console.log("error");
+        console.log(error);
         throw error;
       }
-
-      newPrikkr.id = responseData.name;
-      newPrikkr.creatorId = payload.creatorId;
-      context.commit("addPrikkr", newPrikkr);
     },
     async fetchOnePrikkr(context, payload) {
       const creatorId = payload.creatorId;
@@ -80,6 +75,8 @@ export default {
         dateStart: responseData.dateStart,
         dateEnd: responseData.dateEnd,
       };
+
+      console.log(prikkr);
 
       context.commit("setLinkPrikkr", prikkr);
     },

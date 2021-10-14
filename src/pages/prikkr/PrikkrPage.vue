@@ -4,7 +4,7 @@
     <p>{{ prikkr.description }}</p>
     <p>Minimaal: {{ prikkr.dateStart }}</p>
     <p>Maximaal: {{ prikkr.dateEnd }}</p>
-    <form @submit.prevent="">
+    <form @submit.prevent="send">
       <h3>Wel beschikbaar</h3>
       <div class="form-control">
         <label for="firstDate">Deze datum heeft mijn 1e voorkeur</label>
@@ -24,6 +24,16 @@
           :max="prikkr.dateEnd"
           id="secondDate"
           v-model.trim="secondDate"
+        />
+      </div>
+      <div class="form-control">
+        <label for="secondDate">Deze datum heeft mijn 3e voorkeur</label>
+        <input
+          type="date"
+          :min="prikkr.dateStart"
+          :max="prikkr.dateEnd"
+          id="thirdDate"
+          v-model.trim="thirdDate"
         />
       </div>
 
@@ -56,13 +66,14 @@ export default {
       formIsValid: true,
       creatorId: this.$route.params.creatorId,
       prikkrId: this.$route.params.prikkrId,
-      firstDate: null,
-      secondDate: null,
-      cantDate: null,
+      firstDate: "2021-10-17",
+      secondDate: "2021-10-17",
+      thirdDate: "2021-10-17",
+      cantDate: "2021-10-17",
     };
   },
   created() {
-    this.asdf();
+    this.fetchPrikkr();
     console.log(this.prikkr);
   },
   computed: {
@@ -71,11 +82,30 @@ export default {
     },
   },
   methods: {
-    asdf() {
-      this.$store.dispatch("prikkrs/fetchOnePrikkr", {
+    async fetchPrikkr() {
+      await this.$store.dispatch("prikkrs/fetchOnePrikkr", {
         creatorId: this.creatorId,
         prikkrId: this.prikkrId,
       });
+    },
+    async send() {
+      this.formIsValid = true;
+      if (
+        this.firstDate === null ||
+        this.secondDate === null ||
+        this.thirdDate === null ||
+        this.cantDate === null
+      ) {
+        this.formIsValid = false;
+      } else {
+        console.log("PRIKKRPAGE: sending response");
+        await this.$store.dispatch("prikkrs/sendPrikkrResponse", {
+          firstDate: this.firstDate,
+          secondDate: this.secondDate,
+          thirdDate: this.thirdDate,
+          cantDate: this.cantDate,
+        });
+      }
     },
   },
 };

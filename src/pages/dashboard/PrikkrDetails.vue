@@ -1,8 +1,7 @@
 <template>
   <base-card>
     <h2>{{ prikkrTitle }}</h2>
-    <p> {{ prikkrDesc }}</p>
-    
+    <p>{{ prikkrDesc }}</p>
   </base-card>
 </template>
 
@@ -23,13 +22,12 @@ export default {
     },
     prikkrDesc() {
       return this.selectedPrikkr.description;
-    }
+    },
   },
   mounted() {
     this.selectedPrikkr = this.$store.getters["prikkrs/prikkrs"].find(
       (prikkr) => prikkr.id === this.id
     );
-
     console.log(this.selectedPrikkr);
   },
 };
