@@ -9,13 +9,13 @@
     <h4 class="descTitle">Beschrijving</h4>
     <p class="desc">{{ description }}</p>
     <base-button class="btn" mode="secondary" link :to="prikkrLink"
-      >Alle Antwoorden</base-button
+      >Resultaten</base-button
     >
     <div class="id">
-      <p class="id--title">Deelbare link:</p>
-      <router-link name="a" class="link" :to="answerLink">{{
-        shareLink
-      }}</router-link>
+      <span class="id--title">Deelbare Link: </span>
+      <router-link name="a" class="link" :to="answerLink">
+        {{ shareLink }}</router-link
+      >
     </div>
   </base-card>
 </template>
@@ -55,7 +55,7 @@ export default {
 .id {
   font-size: 65%;
   color: rgb(255, 255, 255);
-  margin-top: 0.75rem;
+  margin-top: 1.2rem;
 }
 .btn {
   margin-top: 1.5rem;

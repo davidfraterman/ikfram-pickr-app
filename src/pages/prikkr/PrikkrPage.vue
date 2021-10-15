@@ -1,13 +1,14 @@
 <template>
   <base-card v-if="!formIsSent">
     <h1>{{ prikkr.title }}</h1>
+    <p class="between">Tussen {{ prikkr.dateStart }} en {{ prikkr.dateEnd }}</p>
+    <p class="details">Beschrijving</p>
     <p>{{ prikkr.description }}</p>
-    <p>Minimaal: {{ prikkr.dateStart }}</p>
-    <p>Maximaal: {{ prikkr.dateEnd }}</p>
+
     <form @submit.prevent="send">
-      <h3>Wel beschikbaar</h3>
+      <h3>Mijn Voorkeuren</h3>
       <div class="form-control">
-        <label for="firstDate">Deze datum heeft mijn 1e voorkeur</label>
+        <label for="firstDate">1e voorkeur</label>
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -17,9 +18,7 @@
         />
       </div>
       <div class="form-control">
-        <label for="secondDate"
-          >Deze datum heeft mijn 2e voorkeur (optioneel)</label
-        >
+        <label for="secondDate">2e voorkeur (optioneel)</label>
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -29,9 +28,7 @@
         />
       </div>
       <div class="form-control">
-        <label for="secondDate"
-          >Deze datum heeft mijn 3e voorkeur (optioneel)</label
-        >
+        <label for="secondDate">3e voorkeur (optioneel)</label>
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -42,8 +39,8 @@
       </div>
 
       <div class="form-control not">
-        <h3>Niet beschikbaar</h3>
-        <label for="secondDate">Deze datum komt mij het slechtst uit</label>
+        <h3>Niet Beschikbaar</h3>
+        <label for="secondDate">Komt mij het slechtst uit</label>
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -64,7 +61,7 @@
   <base-card v-else>
     <h1>Uw antwoord is succesvol verzonden!</h1>
     <p>Maak vandaag ook een account!</p>
-    <base-button to="/registreren">Registreren</base-button>
+    <base-button link to="/registreren">Registreren</base-button>
   </base-card>
 </template>
 
@@ -126,9 +123,20 @@ export default {
 </script>
 
 <style scoped>
+.between {
+  color: rgb(158, 158, 158);
+  font-size: 90%;
+  margin-bottom: 2rem;
+}
+.details {
+  color: #24b4d3;
+  font-size: 120%;
+}
 h3 {
   margin-bottom: 1rem;
   color: #24b4d3;
+  font-weight: normal;
+  font-size: 120%;
 }
 p {
   color: white;
@@ -150,7 +158,9 @@ textarea {
   display: block;
   width: 50%;
   font: inherit;
-  border: 1px solid #ccc;
+  border: 2px solid #24b4d3;
+  background-color: rgb(61, 61, 61);
+  color: white;
   padding: 0.15rem;
   margin-bottom: 1rem;
   border-radius: 6px;
@@ -159,7 +169,7 @@ textarea {
 input:focus,
 textarea:focus {
   border-color: #24b4d3;
-  background-color: aliceblue;
+  background-color: rgb(75, 75, 75);
   outline: none;
 }
 

@@ -3,6 +3,7 @@
     <base-card>
       <div>
         <h1>Mijn Prikkrs</h1>
+
         <base-button mode="primary" link to="/nieuw"
           >+ Nieuwe Prikkr</base-button
         >
