@@ -17,7 +17,9 @@
         />
       </div>
       <div class="form-control">
-        <label for="secondDate">Deze datum heeft mijn 2e voorkeur</label>
+        <label for="secondDate"
+          >Deze datum heeft mijn 2e voorkeur (optioneel)</label
+        >
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -27,7 +29,9 @@
         />
       </div>
       <div class="form-control">
-        <label for="secondDate">Deze datum heeft mijn 3e voorkeur</label>
+        <label for="secondDate"
+          >Deze datum heeft mijn 3e voorkeur (optioneel)</label
+        >
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -64,8 +68,6 @@ export default {
   data() {
     return {
       formIsValid: true,
-      creatorId: this.$route.params.creatorId,
-      prikkrId: this.$route.params.prikkrId,
       firstDate: "2021-10-17",
       secondDate: "2021-10-17",
       thirdDate: "2021-10-17",
@@ -74,11 +76,17 @@ export default {
   },
   created() {
     this.fetchPrikkr();
-    console.log(this.prikkr);
+    console.log(this.creatorId);
   },
   computed: {
     prikkr() {
       return this.$store.getters["prikkrs/linkPrikkr"];
+    },
+    creatorId() {
+      return this.$route.params.creatorId;
+    },
+    prikkrId() {
+      return this.$route.params.prikkrId;
     },
   },
   methods: {
@@ -88,22 +96,20 @@ export default {
         prikkrId: this.prikkrId,
       });
     },
-    async send() {
+    send() {
       this.formIsValid = true;
-      if (
-        this.firstDate === null ||
-        this.secondDate === null ||
-        this.thirdDate === null ||
-        this.cantDate === null
-      ) {
+      if (this.firstDate === null || this.cantDate === null) {
         this.formIsValid = false;
       } else {
-        console.log("PRIKKRPAGE: sending response");
-        await this.$store.dispatch("prikkrs/sendPrikkrResponse", {
+        console.log("firstdate: " + this.firstDate);
+
+        this.$store.dispatch("prikkrs/sendPrikkrResponse", {
           firstDate: this.firstDate,
           secondDate: this.secondDate,
           thirdDate: this.thirdDate,
           cantDate: this.cantDate,
+          creatorId: this.creatorId,
+          prikkrId: this.prikkrId,
         });
       }
     },

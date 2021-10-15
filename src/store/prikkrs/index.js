@@ -29,13 +29,15 @@ export default {
     },
   },
   actions: {
-    async sendPrikkrResponse(payload) {
+    async sendPrikkrResponse(_, payload) {
       const newAnswer = {
         firstDate: payload.firstDate,
         secondDate: payload.secondDate,
         thirdDate: payload.thirdDate,
         cantDate: payload.cantDate,
       };
+
+      console.log("newanswer: " + newAnswer.firstDate);
 
       const response = await fetch(
         `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/answers/${payload.creatorId}/${payload.prikkrId}.json`,
@@ -107,12 +109,6 @@ export default {
       }
       console.log(prikkrs);
       context.commit("setPrikkrs", prikkrs);
-
-      // setUser mutatie
-      context.commit("setUser", {
-        token: responseData.idToken,
-        userId: responseData.localId,
-      });
     },
     async newPrikkr(context, payload) {
       const newPrikkr = {

@@ -21,9 +21,7 @@
 <script>
 export default {
   props: ["title", "id", "description", "dateStart", "dateEnd"],
-  mounted() {
-    console.log(this.prikkrLink);
-  },
+
   computed: {
     prikkrLink() {
       return this.$route.path + "/" + this.id;

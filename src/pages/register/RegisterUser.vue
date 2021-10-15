@@ -5,7 +5,13 @@
     <form @submit.prevent="submitForm">
       <div class="form-control">
         <label for="email">E-mail Adres</label>
-        <input type="email" name="email" id="email" v-model="email" />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          autocomplete="on"
+          v-model="email"
+        />
       </div>
       <div class="form-control">
         <label for="password">Wachtwoord</label>
@@ -13,6 +19,7 @@
           type="password"
           name="password"
           id="password"
+          autocomplete="on"
           v-model="password"
         />
       </div>

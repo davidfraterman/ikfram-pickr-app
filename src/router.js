@@ -19,7 +19,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: "/dashboard/:id",
+      path: "/dashboard/:prikkrId",
       component: PrikkrDetails,
       meta: { requiresAuth: true },
     },
