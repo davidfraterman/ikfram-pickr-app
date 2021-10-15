@@ -4,15 +4,18 @@
     <h2>{{ prikkrTitle }}</h2>
     <p>{{ prikkrDesc }}</p>
 
-    Beste uitkomst antwoorden
-    <li v-for="ans in answers" :key="ans.id">
-      {{ ans.firstDate }}
-    </li>
+    <section v-if="hasAnswers">
+      Beste uitkomst antwoorden
+      <li v-for="ans in answers" :key="ans.id">
+        {{ ans.firstDate }}
+      </li>
 
-    Minst goede uitkomst antwoorden
-    <li v-for="ans in answers" :key="ans.id">
-      {{ ans.cantDate }}
-    </li>
+      Minst goede uitkomst antwoorden
+      <li v-for="ans in answers" :key="ans.id">
+        {{ ans.cantDate }}
+      </li>
+    </section>
+    <section v-else>Nog niemand heeft beantwoord</section>
   </base-card>
 </template>
 
@@ -28,6 +31,9 @@ export default {
   computed: {
     answers() {
       return this.$store.getters["answers/answers"];
+    },
+    hasAnswers() {
+      return this.$store.getters["answers/hasAnswers"];
     },
     prikkrId() {
       return this.$route.params.prikkrId;

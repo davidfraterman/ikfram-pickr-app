@@ -9,12 +9,14 @@
     <h4 class="descTitle">Beschrijving</h4>
     <p class="desc">{{ description }}</p>
     <base-button class="btn" mode="secondary" link :to="prikkrLink"
-      >Bekijk Prikkr</base-button
+      >Antwoorden</base-button
     >
-    <p class="id">
-      <strong class="id--title"> Deel deze unieke link: </strong>
-      <router-link name="a" :to="answerLink">{{ shareLink }}</router-link>
-    </p>
+    <div class="id">
+      <p class="id--title">Deelbare link:</p>
+      <router-link name="a" class="link" :to="answerLink">{{
+        shareLink
+      }}</router-link>
+    </div>
   </base-card>
 </template>
 
@@ -43,12 +45,16 @@ export default {
 </script>
 
 <style scoped>
-.id--title {
-  font-size: 160%;
+.link {
+  color: rgb(77, 190, 221);
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 .id {
-  font-size: 85%;
-  color: rgb(155, 155, 155);
+  font-size: 65%;
+  color: rgb(255, 255, 255);
   margin-top: 0.75rem;
 }
 .btn {

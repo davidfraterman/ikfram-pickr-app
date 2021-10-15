@@ -35,7 +35,7 @@
         Please enter a valid email and non-empty message.
       </p>
       <div class="actions">
-        <base-button>Maak aan</base-button>
+        <base-button class="btn">Maak aan</base-button>
       </div>
     </form>
   </base-card>
@@ -115,7 +115,7 @@ textarea:focus {
 
 .btn {
   margin-top: 2rem;
-  margin-right: 1rem;
+  margin-right: 3rem;
 }
 
 h1 {

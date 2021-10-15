@@ -78,10 +78,10 @@ export default {
   font-size: 90%;
 }
 h1 {
-  
   margin-bottom: 3rem;
 }
 .noPrikkrs {
   margin-top: 3rem;
+  color: white;
 }
 </style>
