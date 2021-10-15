@@ -19,13 +19,18 @@
           :description="item.description"
         ></dashboard-item>
       </ul>
-      <p class="noPrikkrs" v-else>
-        U heeft nog geen Prikkrs, klik op bovenstaande knop om er een toe te
-        voegen. 
-        <br><br>
-        Mist u prikkrs? probeer dan te herladen
-        <base-button mode="secondary" @click="loadPrikkrs">Herladen</base-button>
-      </p>
+      <div class="noPrikkrs">
+        <h4>
+          U heeft nog geen Prikkrs, klik op bovenstaande knop om er een toe te
+          voegen.
+        </h4>
+
+        <br /><br />
+        Mist u prikkrs? Probeer dan te
+        <base-button class="reloadbtn" mode="secondary" @click="loadPrikkrs"
+          >Herladen</base-button
+        >
+      </div>
     </base-card>
   </section>
 </template>
@@ -68,8 +73,13 @@ export default {
 </script>
 
 <style scoped>
+.reloadbtn {
+  padding: 0.4rem;
+  font-size: 90%;
+}
 h1 {
-  font-size: 300%;
+  
+  margin-bottom: 3rem;
 }
 .noPrikkrs {
   margin-top: 3rem;

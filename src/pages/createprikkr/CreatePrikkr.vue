@@ -1,6 +1,6 @@
 <template>
   <base-card>
-    <h1>Nieuwe Prikkr Maken</h1>
+    <h1>Nieuwe Prikkr</h1>
     <form @submit.prevent="submitForm">
       <div class="form-control">
         <label for="title">Titel</label>
@@ -119,7 +119,6 @@ textarea:focus {
 
 h1 {
   margin-bottom: 3rem;
-  color: #24b4d3;
 }
 .error {
   color: rgb(255, 67, 67);

@@ -30,7 +30,7 @@ export default {
       return "/prikkr/" + this.userId + "/" + this.id;
     },
     shareLink() {
-      return 'prikkr.netlify.app' + this.answerLink;
+      return "prikkr.netlify.app" + this.answerLink;
     },
     userId() {
       return this.$store.getters["userId"];
@@ -78,7 +78,7 @@ export default {
   padding: 1rem;
   margin: 2rem auto;
   max-width: 50rem;
-  background-color: rgb(61, 61, 61);
+  background-color: #2c2c2c;
 }
 
 a {

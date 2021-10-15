@@ -140,10 +140,13 @@ textarea:focus {
 
 h1 {
   margin-bottom: 3rem;
-  color: #24b4d3;
 }
 .error {
   color: rgb(255, 67, 67);
+}
+
+label {
+  color: white;
 }
 
 @media only screen and (max-width: 700px) {

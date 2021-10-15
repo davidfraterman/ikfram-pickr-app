@@ -49,7 +49,7 @@ export default {
 header {
   width: 100%;
   height: 5rem;
-  background-color: #363636;
+  background-color: #2c2c2c;
   display: flex;
   color: white;
   justify-content: center;
@@ -108,6 +108,7 @@ h1 a.router-link-active {
 
 h1 {
   margin: 0;
+  font-size: 150%;
 }
 
 h1 a {

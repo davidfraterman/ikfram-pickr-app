@@ -4,13 +4,13 @@
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader.vue';
+import TheHeader from "./components/layout/TheHeader.vue";
 
 export default {
   name: "App",
   components: {
     TheHeader,
-  }
+  },
 };
 </script>
 
@@ -25,5 +25,14 @@ export default {
 
 html {
   font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: rgb(58, 58, 58);
+}
+
+h1 {
+  color: white;
+  font-size: 300%;
 }
 </style>

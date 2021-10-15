@@ -74,10 +74,10 @@ export default {
     return {
       formIsValid: true,
       formIsSent: false,
-      firstDate: "2021-10-17",
-      secondDate: "2021-10-17",
-      thirdDate: "2021-10-17",
-      cantDate: "2021-10-17",
+      firstDate: this.firstDate,
+      secondDate: this.secondDate,
+      thirdDate: this.thirdDate,
+      cantDate: this.cantDate,
     };
   },
   created() {
