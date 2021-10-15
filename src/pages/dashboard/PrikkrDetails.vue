@@ -4,6 +4,12 @@
     <h2>{{ prikkrTitle }}</h2>
     <p>{{ prikkrDesc }}</p>
 
+    Beste uitkomst antwoorden
+    <li v-for="ans in answers" :key="ans.id">
+      {{ ans.firstDate }}
+    </li>
+
+    Minst goede uitkomst antwoorden
     <li v-for="ans in answers" :key="ans.id">
       {{ ans.cantDate }}
     </li>
