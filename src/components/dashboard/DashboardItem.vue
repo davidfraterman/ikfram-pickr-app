@@ -13,7 +13,7 @@
     >
     <p class="id">
       <strong>Uniek Prikkr ID: </strong>
-      {{ "localhost:8080/prikkr/" + userId + "/" + id }}
+      {{ "prikkr.netlify.app/prikkr/" + userId + "/" + id }}
     </p>
   </base-card>
 </template>

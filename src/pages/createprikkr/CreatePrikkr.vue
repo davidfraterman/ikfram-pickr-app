@@ -35,7 +35,7 @@
         Please enter a valid email and non-empty message.
       </p>
       <div class="actions">
-        <base-button>Send Message</base-button>
+        <base-button>Maak aan</base-button>
       </div>
     </form>
   </base-card>
