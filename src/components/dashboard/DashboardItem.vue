@@ -13,7 +13,7 @@
     >
     <p class="id">
       <strong>Uniek Prikkr ID: </strong>
-      <router-link :to="'prikkr.netlify.app/prikkr/' + userId + '/' + id">{{ "prikkr.netlify.app/prikkr/" + userId + "/" + id }}</router-link>
+      <router-link :to="answerLink">{{ answerLink }}</router-link>
     </p>
   </base-card>
 </template>
@@ -26,10 +26,16 @@ export default {
     prikkrLink() {
       return this.$route.path + "/" + this.id;
     },
+    answerLink() {
+      return "prikkr.netlify.app/prikkr/" + this.userId + "/" + this.id;
+    },
     userId() {
       return this.$store.getters["userId"];
     },
   },
+  mounted() {
+    console.log(this.answerLink);
+  }
 };
 </script>
 

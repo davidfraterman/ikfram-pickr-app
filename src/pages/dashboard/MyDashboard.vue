@@ -19,9 +19,12 @@
           :description="item.description"
         ></dashboard-item>
       </ul>
-      <p class="noPrikkrs">
+      <p class="noPrikkrs" v-else>
         U heeft nog geen Prikkrs, klik op bovenstaande knop om er een toe te
-        voegen. <button @click="loadPrikkrs">reload</button>
+        voegen. 
+        <br><br>
+        Mist u prikkrs? probeer dan te herladen
+        <base-button mode="secondary" @click="loadPrikkrs">Herladen</base-button>
       </p>
     </base-card>
   </section>
