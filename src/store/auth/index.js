@@ -1,12 +1,14 @@
 export default {
   state() {
     return {
+      displayName: null,
       userId: null,
       token: null,
     };
   },
   mutations: {
     setUser(state, payload) {
+      state.displayName = payload.displayName
       state.token = payload.token;
       state.userId = payload.userId;
     },
@@ -30,6 +32,7 @@ export default {
         {
           method: "POST",
           body: JSON.stringify({
+            // displayName: payload.displayName,
             email: payload.email,
             password: payload.password,
             returnSecureToken: true,

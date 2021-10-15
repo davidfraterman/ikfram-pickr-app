@@ -3,6 +3,16 @@
     <h1 v-if="this.mode === 'login'">Inloggen</h1>
     <h1 v-else>Registreren</h1>
     <form @submit.prevent="submitForm">
+      <div class="form-control" v-if="this.mode === 'signup'">
+        <label for="displayName">Naam</label>
+        <input
+          type="text"
+          name="displayName"
+          id="displayName"
+          autocomplete="on"
+          v-model="displayName"
+        />
+      </div>
       <div class="form-control">
         <label for="email">E-mail Adres</label>
         <input
@@ -42,7 +52,7 @@
 export default {
   data() {
     return {
-      name: "",
+      displayName: "",
       email: "",
       password: "",
       formIsValid: true,
@@ -84,6 +94,7 @@ export default {
             });
           } else {
             await this.$store.dispatch("signup", {
+              displayName: this.displayName,
               email: this.email,
               password: this.password,
             });

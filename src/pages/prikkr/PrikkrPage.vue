@@ -1,5 +1,9 @@
 <template>
-  <base-card v-if="!formIsSent">
+  <section class="loader" v-if="isLoading">
+    <base-spinner></base-spinner>
+  </section>
+
+  <base-card v-if="!formIsSent && !isLoading">
     <h1>{{ prikkr.title }}</h1>
     <p class="between">Tussen {{ prikkr.dateStart }} en {{ prikkr.dateEnd }}</p>
     <p class="details">Beschrijving</p>
@@ -58,7 +62,7 @@
       </div>
     </form>
   </base-card>
-  <base-card v-else>
+  <base-card v-else-if="formIsValid && formIsSent">
     <h1>Uw antwoord is succesvol verzonden!</h1>
     <p>Maak vandaag ook een account!</p>
     <base-button link to="/registreren">Registreren</base-button>
@@ -75,6 +79,7 @@ export default {
       secondDate: this.secondDate,
       thirdDate: this.thirdDate,
       cantDate: this.cantDate,
+      isLoading: false,
     };
   },
   created() {
@@ -94,10 +99,12 @@ export default {
   },
   methods: {
     async fetchPrikkr() {
+      this.isLoading = true;
       await this.$store.dispatch("prikkrs/fetchOnePrikkr", {
         creatorId: this.creatorId,
         prikkrId: this.prikkrId,
       });
+      this.isLoading = false;
     },
     send() {
       this.formIsValid = true;
@@ -123,6 +130,9 @@ export default {
 </script>
 
 <style scoped>
+.loader {
+  margin-top: 6rem;
+}
 .between {
   color: rgb(158, 158, 158);
   font-size: 90%;

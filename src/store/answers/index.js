@@ -22,8 +22,11 @@ export default {
     async fetchAnswers(context, payload) {
       console.log("creatorid " + payload.creatorId + " " + payload.prikkrId);
 
+      const token = context.rootGetters.token;
+
       const response = await fetch(
-        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/answers/${payload.creatorId}/${payload.prikkrId}.json`
+        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/answers/${payload.creatorId}/${payload.prikkrId}.json?auth=` +
+          token
       );
 
       const responseData = await response.json();

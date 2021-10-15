@@ -9,7 +9,7 @@
         >
       </div>
 
-      <ul v-if="hasPrikkrs">
+      <ul v-if="hasPrikkrs && !isLoading">
         <dashboard-item
           v-for="item in myPrikkrs"
           :key="item.id"
@@ -20,17 +20,20 @@
           :description="item.description"
         ></dashboard-item>
       </ul>
-      <div class="noPrikkrs" v-else>
+      <div class="noPrikkrs" v-else-if="!hasPrikkers && !isLoading">
         <h4>
           U heeft nog geen Prikkrs, klik op bovenstaande knop om er een toe te
           voegen.
         </h4>
 
         <br /><br />
-        Mist u prikkrs? Probeer dan te
+        Heeft u wel Prikkrs? Probeer dan te
         <base-button class="reloadbtn" mode="secondary" @click="loadPrikkrs"
           >Herladen</base-button
         >
+      </div>
+      <div v-if="isLoading">
+        <base-spinner class="spinner"></base-spinner>
       </div>
     </base-card>
   </section>
@@ -41,7 +44,9 @@ import DashboardItem from "../../components/dashboard/DashboardItem.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      isLoading: false,
+    };
   },
   created() {
     this.loadPrikkrs();
@@ -55,25 +60,31 @@ export default {
       return this.$store.getters["prikkrs/prikkrs"];
     },
     hasPrikkrs() {
-      return this.$store.getters["prikkrs/hasPrikkrs"];
+      return !this.isLoading && this.$store.getters["prikkrs/hasPrikkrs"];
     },
   },
   methods: {
-    log() {
-      console.log(this.myPrikkrs);
-    },
     async loadPrikkrs() {
+      console.log(this.hasPrikkrs);
+      this.isLoading = true;
+
       try {
         await this.$store.dispatch("prikkrs/fetchPrikkrs");
       } catch (err) {
         console.log(err);
       }
+
+      this.isLoading = false;
+      console.log(this.hasPrikkrs);
     },
   },
 };
 </script>
 
 <style scoped>
+.spinner {
+  margin-top: 6rem;
+}
 .reloadbtn {
   padding: 0.4rem;
   font-size: 90%;

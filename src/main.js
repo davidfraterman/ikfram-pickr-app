@@ -5,6 +5,7 @@ import store from './store/index.js';
 
 import BaseCard from './components/ui/BaseCard.vue';
 import BaseButton from './components/ui/BaseButton.vue';
+import BaseSpinner from './components/ui/BaseSpinner.vue';
 
 import App from './App.vue'
 
@@ -15,5 +16,6 @@ app.use(store);
 
 app.component('BaseCard', BaseCard);
 app.component('BaseButton', BaseButton);
+app.component('BaseSpinner', BaseSpinner);
 
 app.mount('#app');

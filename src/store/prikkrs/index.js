@@ -121,8 +121,10 @@ export default {
       console.log(newPrikkr);
       console.log("payload" + payload.creatorId);
 
+      const token = context.rootGetters.token
+
       const response = await fetch(
-        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/prikkrs/${payload.creatorId}.json`,
+        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/prikkrs/${payload.creatorId}.json?auth=` + token,
         {
           method: "POST",
           body: JSON.stringify(newPrikkr),

@@ -1,5 +1,8 @@
 <template>
-  <base-card>
+  <base-card v-if="isLoading">
+    <base-spinner></base-spinner>
+  </base-card>
+  <base-card v-if="!isLoading">
     <h1>Mijn Resultaten</h1>
     <h2>{{ prikkrTitle }}</h2>
     <p>{{ prikkrDesc }}</p>
@@ -16,7 +19,9 @@
         {{ ans.cantDate }}
       </li>
     </section>
-    <section v-else>Nog niemand heeft beantwoord</section>
+    <section v-else-if="!hasAnswers && !isLoading">
+      <p>Nog niemand heeft geantwoord</p>
+    </section>
   </base-card>
 </template>
 
@@ -26,6 +31,7 @@ export default {
     return {
       // id: this.$route.params.id,
       selectedPrikkr: null,
+      isLoading: false,
       // answers: [],
     };
   },
@@ -34,7 +40,7 @@ export default {
       return this.$store.getters["answers/answers"];
     },
     hasAnswers() {
-      return this.$store.getters["answers/hasAnswers"];
+      return !this.isLoading && this.$store.getters["answers/hasAnswers"];
     },
     prikkrId() {
       return this.$route.params.prikkrId;
@@ -53,7 +59,6 @@ export default {
     this.loadPrikkr();
     this.fetchAnswers();
   },
-  mounted() {},
   methods: {
     loadPrikkr() {
       this.selectedPrikkr = this.$store.getters["prikkrs/prikkrs"].find(
@@ -61,10 +66,12 @@ export default {
       );
     },
     async fetchAnswers() {
+      this.isLoading = true;
       await this.$store.dispatch("answers/fetchAnswers", {
         creatorId: this.creatorId,
         prikkrId: this.prikkrId,
       });
+      this.isLoading = false;
     },
   },
 };

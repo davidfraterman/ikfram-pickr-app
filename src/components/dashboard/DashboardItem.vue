@@ -38,9 +38,6 @@ export default {
       return this.$store.getters["userId"];
     },
   },
-  mounted() {
-    console.log(this.answerLink);
-  },
 };
 </script>
 
@@ -61,7 +58,7 @@ export default {
   margin-top: 1.5rem;
 }
 .title {
-  font-size: 175%;
+  font-size: 200%;
   color: rgb(77, 190, 221);
 }
 .descTitle {

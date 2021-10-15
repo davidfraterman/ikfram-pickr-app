@@ -113,7 +113,7 @@ h1 a.router-link-active {
 
 h1 {
   margin: 0;
-  font-size: 150%;
+  font-size: 130%;
 }
 
 h1 a {

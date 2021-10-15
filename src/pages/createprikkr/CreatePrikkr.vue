@@ -4,13 +4,19 @@
     <form @submit.prevent="submitForm">
       <div class="form-control">
         <label for="title">Titel</label>
-        <input type="text" id="title" v-model.trim="title" />
+        <input
+          type="text"
+          id="title"
+          placeholder="B.v. Vergaderen"
+          v-model.trim="title"
+        />
       </div>
       <div class="form-control">
         <label for="description">Beschrijving</label>
         <textarea
           rows="4"
           id="description"
+          placeholder="Geef uw Prikkr een duidelijke beschrijving"
           v-model.trim="description"
         ></textarea>
       </div>
@@ -82,7 +88,7 @@ export default {
         dateEnd: this.dateEnd,
       });
 
-      this.$router.replace("/dashboard");
+      this.$router.push("/dashboard");
     },
   },
 };
