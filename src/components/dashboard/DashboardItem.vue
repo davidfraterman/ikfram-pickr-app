@@ -12,8 +12,8 @@
       >Bekijk Prikkr</base-button
     >
     <p class="id">
-      <strong>Uniek Prikkr ID: </strong>
-      <router-link :to="answerLink">{{ answerLink }}</router-link>
+      <strong class="id--title"> Deel deze link met de uitgenodigden: </strong>
+      <router-link name="a" :to="answerLink">{{ shareLink }}</router-link>
     </p>
   </base-card>
 </template>
@@ -27,7 +27,10 @@ export default {
       return this.$route.path + "/" + this.id;
     },
     answerLink() {
-      return "prikkr.netlify.app/prikkr/" + this.userId + "/" + this.id;
+      return "/prikkr/" + this.userId + "/" + this.id;
+    },
+    shareLink() {
+      return 'prikkr.netlify.app' + this.answerLink;
     },
     userId() {
       return this.$store.getters["userId"];
@@ -35,13 +38,16 @@ export default {
   },
   mounted() {
     console.log(this.answerLink);
-  }
+  },
 };
 </script>
 
 <style scoped>
+.id--title {
+  font-size: 160%;
+}
 .id {
-  font-size: 65%;
+  font-size: 85%;
   color: rgb(155, 155, 155);
   margin-top: 0.75rem;
 }
