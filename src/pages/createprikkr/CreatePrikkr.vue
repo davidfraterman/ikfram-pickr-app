@@ -92,6 +92,7 @@ export default {
 label {
   margin-bottom: 0.25rem;
   display: block;
+  color: white;
 }
 
 input,

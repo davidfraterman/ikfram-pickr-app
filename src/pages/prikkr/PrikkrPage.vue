@@ -128,6 +128,10 @@ export default {
 <style scoped>
 h3 {
   margin-bottom: 1rem;
+  color: #24b4d3;
+}
+p {
+  color: white;
 }
 .not {
   margin-top: 2rem;
@@ -138,6 +142,7 @@ form {
 label {
   margin-bottom: 0.25rem;
   display: block;
+  color: rgb(255, 255, 255);
 }
 
 input,
