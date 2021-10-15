@@ -89,10 +89,13 @@ export default {
 </script>
 
 <style scoped>
+form {
+  margin-top: 3rem;
+}
 label {
   margin-bottom: 0.25rem;
   display: block;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 input,
@@ -100,7 +103,9 @@ textarea {
   display: block;
   width: 50%;
   font: inherit;
-  border: 1px solid #ccc;
+  border: 2px solid #24b4d3;
+  background-color: rgb(61, 61, 61);
+  color: white;
   padding: 0.15rem;
   margin-bottom: 1rem;
   border-radius: 6px;
@@ -109,7 +114,7 @@ textarea {
 input:focus,
 textarea:focus {
   border-color: #24b4d3;
-  background-color: aliceblue;
+  background-color: rgb(75, 75, 75);
   outline: none;
 }
 

@@ -5,12 +5,13 @@
     <p>{{ prikkrDesc }}</p>
 
     <section v-if="hasAnswers">
-      Beste uitkomst antwoorden
+      <p>Beste uitkomst antwoorden</p>
+
       <li v-for="ans in answers" :key="ans.id">
         {{ ans.firstDate }}
       </li>
 
-      Minst goede uitkomst antwoorden
+      <p>Minst goede uitkomst antwoorden</p>
       <li v-for="ans in answers" :key="ans.id">
         {{ ans.cantDate }}
       </li>
@@ -68,3 +69,20 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+li {
+  color: white;
+  text-decoration: none;
+}
+p {
+  color: white;
+}
+h2 {
+  color: white;
+  margin-top: 3rem;
+}
+section {
+  margin-top: 3rem;
+}
+</style>
