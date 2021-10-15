@@ -12,7 +12,7 @@
       >Bekijk Prikkr</base-button
     >
     <p class="id">
-      <strong class="id--title"> Deel deze link met de uitgenodigden: </strong>
+      <strong class="id--title"> Deel deze unieke link: </strong>
       <router-link name="a" :to="answerLink">{{ shareLink }}</router-link>
     </p>
   </base-card>

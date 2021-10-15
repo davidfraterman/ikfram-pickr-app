@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <base-card v-if="!formIsSent">
     <h1>{{ prikkr.title }}</h1>
     <p>{{ prikkr.description }}</p>
     <p>Minimaal: {{ prikkr.dateStart }}</p>
@@ -61,6 +61,11 @@
       </div>
     </form>
   </base-card>
+  <base-card v-else>
+    <h1>Uw antwoord is succesvol verzonden!</h1>
+    <p>Maak vandaag ook een account!</p>
+    <base-button to="/registreren">Registreren</base-button>
+  </base-card>
 </template>
 
 <script>
@@ -68,6 +73,7 @@ export default {
   data() {
     return {
       formIsValid: true,
+      formIsSent: false,
       firstDate: "2021-10-17",
       secondDate: "2021-10-17",
       thirdDate: "2021-10-17",
@@ -111,6 +117,8 @@ export default {
           creatorId: this.creatorId,
           prikkrId: this.prikkrId,
         });
+
+        this.formIsSent = true;
       }
     },
   },
