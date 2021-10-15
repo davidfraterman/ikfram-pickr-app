@@ -9,7 +9,7 @@
     <h4 class="descTitle">Beschrijving</h4>
     <p class="desc">{{ description }}</p>
     <base-button class="btn" mode="secondary" link :to="prikkrLink"
-      >Antwoorden</base-button
+      >Alle Antwoorden</base-button
     >
     <div class="id">
       <p class="id--title">Deelbare link:</p>

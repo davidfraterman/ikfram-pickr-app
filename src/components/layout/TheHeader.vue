@@ -2,14 +2,16 @@
   <header>
     <nav>
       <h1 v-if="isLoggedIn">
-        <router-link to="/dashboard">Prikkr</router-link>
+        <router-link to="/dashboard">
+          <h1 class="logo">Prikkr</h1>
+        </router-link>
       </h1>
       <h1 v-else>
         <router-link to="/">Prikkr</router-link>
       </h1>
       <ul>
         <li v-if="!isLoggedIn">
-          <router-link to="/registreren">Mijn Dashboard</router-link>
+          <router-link to="/registreren">Log in</router-link>
         </li>
       </ul>
       <ul v-if="isLoggedIn">
@@ -46,6 +48,9 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  color: #24b4d3;
+}
 header {
   width: 100%;
   height: 5rem;
@@ -102,7 +107,7 @@ a.router-link-active {
 
 h1 a:active,
 h1 a.router-link-active {
-  color: white;
+  color: #24b4d3;
   text-decoration: none;
 }
 
@@ -112,7 +117,7 @@ h1 {
 }
 
 h1 a {
-  color: white;
+  color: #24b4d3;
   margin: 0;
 }
 

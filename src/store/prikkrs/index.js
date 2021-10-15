@@ -141,23 +141,6 @@ export default {
       newPrikkr.id = responseData.name;
       newPrikkr.creatorId = payload.creatorId;
       context.commit("addPrikkr", newPrikkr);
-
-      // all prikkrs
-      const prikkrsResponse = await fetch(
-        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/prikkrs/allPrikkrs.json`,
-        {
-          method: "POST",
-          body: JSON.stringify(newPrikkr),
-        }
-      );
-
-      const prikkrsResponseData = await prikkrsResponse.json();
-
-      if (!prikkrsResponse.ok) {
-        const error = new Error(prikkrsResponseData.message);
-        console.log("error");
-        throw error;
-      }
     },
   },
 };

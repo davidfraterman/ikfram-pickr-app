@@ -19,7 +19,7 @@
           :description="item.description"
         ></dashboard-item>
       </ul>
-      <div class="noPrikkrs">
+      <div class="noPrikkrs" v-else>
         <h4>
           U heeft nog geen Prikkrs, klik op bovenstaande knop om er een toe te
           voegen.
