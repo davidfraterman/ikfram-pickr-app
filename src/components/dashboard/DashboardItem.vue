@@ -13,7 +13,7 @@
     >
     <p class="id">
       <strong>Uniek Prikkr ID: </strong>
-      {{ "prikkr.netlify.app/prikkr/" + userId + "/" + id }}
+      <router-link :to="'prikkr.netlify.app/prikkr/' + userId + '/' + id">{{ "prikkr.netlify.app/prikkr/" + userId + "/" + id }}</router-link>
     </p>
   </base-card>
 </template>
