@@ -6,7 +6,24 @@
     <h1>Mijn Resultaten</h1>
     <h2>{{ prikkrTitle }}</h2>
     <p>{{ prikkrDesc }}</p>
-
+    <section>
+      <h3>Automatische Aanbeveling</h3>
+      <p class="recomm" v-if="answers.length > 0">
+        {{
+          new Date(highestScoringDate).getDate() +
+          " " +
+          new Date(highestScoringDate).toLocaleString("default", {
+            month: "long",
+          }) +
+          " " +
+          new Date(highestScoringDate).getFullYear()
+        }}
+      </p>
+      <p class="norecomm" v-else>
+        Nadat u wat antwoorden binnen heeft zal u hier een automatisch berekende
+        datum vinden die wij het best vinden passen.
+      </p>
+    </section>
     <section>
       <div class="tableheader">
         <h3>Alle Inzendingen ({{ this.answers.length }})</h3>
@@ -111,24 +128,6 @@
         </p>
       </div>
     </section>
-    <section>
-      <h3>Prikkr Algoritme Aanbeveling</h3>
-      <p class="recomm" v-if="answers.length > 0">
-        {{
-          new Date(highestScoringDate).getDate() +
-          " " +
-          new Date(highestScoringDate).toLocaleString("default", {
-            month: "long",
-          }) +
-          " " +
-          new Date(highestScoringDate).getFullYear()
-        }}
-      </p>
-      <p class="norecomm" v-else>
-        Nadat u wat antwoorden binnen heeft zal u hier een automatisch berekende
-        datum vinden die wij het best vinden passen.
-      </p>
-    </section>
   </base-card>
 </template>
 
@@ -136,7 +135,6 @@
 export default {
   data() {
     return {
-      // id: this.$route.params.id,
       selectedPrikkr: null,
       isLoading: false,
       isReloading: false,
@@ -177,6 +175,8 @@ export default {
     answers() {
       this.fillArrays();
       this.calculateDates();
+      this.filterDatesList();
+      this.highestScore();
     },
   },
   methods: {
@@ -193,21 +193,6 @@ export default {
       this.calculateScore(this.allSecondDates, 2.25);
       this.calculateScore(this.allThirdDates, 1.2);
       this.calculateScore(this.allCantDates, -6);
-      console.log(this.datesWithScores);
-      this.filterDatesList();
-      this.highestScore();
-    },
-    highestScore() {
-      let array = [];
-      for (let i in this.filteredDatesWithScores) {
-        array.push(this.filteredDatesWithScores[i].score);
-      }
-      const max = Math.max(...array);
-      for (let j in this.filteredDatesWithScores) {
-        if (this.filteredDatesWithScores[j].score === max) {
-          this.highestScoringDate = this.filteredDatesWithScores[j].date;
-        }
-      }
     },
     calculateScore(allXDates, score) {
       const datesDone = [];
@@ -240,7 +225,6 @@ export default {
               loc = j;
             }
           }
-
           this.filteredDatesWithScores[loc].score =
             this.filteredDatesWithScores[loc].score +
             this.datesWithScores[i].score;
@@ -250,7 +234,18 @@ export default {
           array.push(date);
         }
       }
-      console.log(this.filteredDatesWithScores);
+    },
+    highestScore() {
+      let array = [];
+      for (let i in this.filteredDatesWithScores) {
+        array.push(this.filteredDatesWithScores[i].score);
+      }
+      const max = Math.max(...array);
+      for (let j in this.filteredDatesWithScores) {
+        if (this.filteredDatesWithScores[j].score === max) {
+          this.highestScoringDate = this.filteredDatesWithScores[j].date;
+        }
+      }
     },
     getOccurrence(array, value) {
       return array.filter((v) => v === value).length;
