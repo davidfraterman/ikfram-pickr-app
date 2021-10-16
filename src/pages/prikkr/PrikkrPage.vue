@@ -10,7 +10,7 @@
     <p>{{ prikkr.description }}</p>
 
     <form @submit.prevent="send">
-      <h3>Naam</h3>
+      <h3>Naam (optioneel)</h3>
       <div class="form-control">
         <input
           type="text"
