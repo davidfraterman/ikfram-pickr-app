@@ -11,7 +11,7 @@
 
       <ul v-if="hasPrikkrs && !isLoading">
         <dashboard-item
-          v-for="item in myPrikkrs.reverse()"
+          v-for="item in myPrikkrs"
           :key="item.id"
           :title="item.title"
           :id="item.id"
@@ -59,6 +59,7 @@ export default {
     myPrikkrs() {
       return this.$store.getters["prikkrs/prikkrs"];
     },
+
     hasPrikkrs() {
       return !this.isLoading && this.$store.getters["prikkrs/hasPrikkrs"];
     },

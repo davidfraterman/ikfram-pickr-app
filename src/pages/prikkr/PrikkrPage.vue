@@ -10,8 +10,10 @@
     <p>{{ prikkr.description }}</p>
 
     <form @submit.prevent="send">
-      <h3>Naam (optioneel)</h3>
+      <h3>Naam</h3>
       <div class="form-control">
+        <label for="name">Naam <span class="optional">(optioneel)</span></label>
+
         <input
           type="text"
           id="name"
@@ -31,7 +33,9 @@
         />
       </div>
       <div class="form-control">
-        <label for="secondDate">2e voorkeur (optioneel)</label>
+        <label for="secondDate"
+          >2e voorkeur <span class="optional">(optioneel)</span></label
+        >
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -41,7 +45,9 @@
         />
       </div>
       <div class="form-control">
-        <label for="secondDate">3e voorkeur (optioneel)</label>
+        <label for="secondDate"
+          >3e voorkeur <span class="optional">(optioneel)</span></label
+        >
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -53,7 +59,10 @@
 
       <div class="form-control not">
         <h3>Niet Beschikbaar</h3>
-        <label for="secondDate">Komt mij het slechtst uit</label>
+        <label for="secondDate"
+          >Komt mij het slechtst uit
+          <span class="optional">(optioneel)</span></label
+        >
         <input
           type="date"
           :min="prikkr.dateStart"
@@ -118,7 +127,7 @@ export default {
     },
     send() {
       this.formIsValid = true;
-      if (this.firstDate === null || this.cantDate === null) {
+      if (this.firstDate === null) {
         this.formIsValid = false;
       } else {
         console.log("firstdate: " + this.firstDate);
@@ -141,6 +150,10 @@ export default {
 </script>
 
 <style scoped>
+.optional {
+  color: rgb(143, 143, 143);
+  font-size: 85%;
+}
 .container {
   padding: 1rem;
   margin: 2rem auto;

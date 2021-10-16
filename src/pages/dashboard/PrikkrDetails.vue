@@ -113,8 +113,13 @@ export default {
       selectedPrikkr: null,
       isLoading: false,
       isReloading: false,
-
-      // answers: [],
+      datesWithScores: [
+        {'13-3-2020': 3, }
+      ],
+      allFirstDates: [],
+      allSecondDates: [],
+      allThirdDates: [],
+      allCantDates: [],
     };
   },
   computed: {
@@ -141,7 +146,31 @@ export default {
     this.loadPrikkr();
     this.fetchAnswers();
   },
+  watch: {
+    answers() {
+      this.fillArrays();
+      this.calculateDates();
+    },
+  },
   methods: {
+    fillArrays() {
+      for (let answer in this.answers) {
+        this.allFirstDates.push(this.answers[answer].firstDate);
+        this.allSecondDates.push(this.answers[answer].secondDate);
+        this.allThirdDates.push(this.answers[answer].thirdDate);
+        this.allCantDates.push(this.answers[answer].cantDate);
+      }
+      console.log("allFirstDates len: " + this.allFirstDates.length);
+    },
+    calculateDates() {
+      for (let date in this.allFirstDates) {
+        const occurence = this.getOccurrence(this.allFirstDates, this.allFirstDates[date]);
+        console.log(this.allFirstDates[date] + ": " + occurence);
+      }
+    },
+    getOccurrence(array, value) {
+      return array.filter((v) => v === value).length;
+    },
     loadPrikkr() {
       this.selectedPrikkr = this.$store.getters["prikkrs/prikkrs"].find(
         (prikkr) => prikkr.id === this.prikkrId
@@ -157,10 +186,15 @@ export default {
     },
     async reload() {
       this.isReloading = true;
+      this.allFirstDates = [];
+      this.allSecondDates = [];
+      this.allThirdDates = [];
+      this.allCantDates = [];
       await this.$store.dispatch("answers/fetchAnswers", {
         creatorId: this.creatorId,
         prikkrId: this.prikkrId,
       });
+
       this.isReloading = false;
     },
   },
@@ -174,6 +208,12 @@ export default {
 }
 .firstdate {
   color: rgb(82, 163, 82);
+}
+.seconddate {
+  color: rgb(226, 226, 226);
+}
+.thirddate {
+  color: rgb(226, 226, 226);
 }
 
 .cantdate {
