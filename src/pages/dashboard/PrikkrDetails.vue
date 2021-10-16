@@ -288,6 +288,15 @@ export default {
 </script>
 
 <style scoped>
+.how {
+  color: grey;
+  font-size: 80%;
+  margin-left: 1rem;
+}
+.how:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 .recomm {
   padding: 1rem;
   background-color: rgb(46, 46, 46);
