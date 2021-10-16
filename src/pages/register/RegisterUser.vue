@@ -1,5 +1,5 @@
 <template>
-  <base-card>
+  <section class="container">
     <h1 v-if="this.mode === 'login'">Inloggen</h1>
     <h1 v-else>Registreren</h1>
     <form @submit.prevent="submitForm">
@@ -45,7 +45,7 @@
         >{{ switchLoginOrSignup }}</base-button
       >
     </form>
-  </base-card>
+  </section>
 </template>
 
 <script>
@@ -121,6 +121,12 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  padding: 1rem;
+  margin: 2rem auto;
+  margin-top: 10vh;
+  max-width: 25vw;
+}
 form {
   margin-top: 3rem;
 }
@@ -133,7 +139,7 @@ label {
 input,
 textarea {
   display: block;
-  width: 50%;
+  width: 100%;
   font: inherit;
   border: 2px solid #24b4d3;
   background-color: rgb(61, 61, 61);
@@ -162,10 +168,21 @@ h1 {
   color: rgb(255, 67, 67);
 }
 
+@media only screen and (max-width: 1400px) {
+  .container {
+    max-width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .container {
+    max-width: 70vw;
+  }
+}
+
 @media only screen and (max-width: 700px) {
-  input,
-  textarea {
-    width: 80%;
+  .container {
+    max-width: 90vw;
   }
 }
 </style>

@@ -3,13 +3,22 @@
     <base-spinner></base-spinner>
   </section>
 
-  <base-card v-if="!formIsSent && !isLoading">
+  <section class="container" v-if="!formIsSent && !isLoading">
     <h1>{{ prikkr.title }}</h1>
     <p class="between">Tussen {{ prikkr.dateStart }} en {{ prikkr.dateEnd }}</p>
     <p class="details">Beschrijving</p>
     <p>{{ prikkr.description }}</p>
 
     <form @submit.prevent="send">
+      <h3>Naam</h3>
+      <div class="form-control">
+        <input
+          type="text"
+          id="name"
+          placeholder="Uw naam"
+          v-model.trim="name"
+        />
+      </div>
       <h3>Mijn Voorkeuren</h3>
       <div class="form-control">
         <label for="firstDate">1e voorkeur</label>
@@ -61,12 +70,12 @@
         <base-button class="btn">Verzend</base-button>
       </div>
     </form>
-  </base-card>
-  <base-card v-else-if="formIsValid && formIsSent">
+  </section>
+  <section class="container" v-else-if="formIsValid && formIsSent">
     <h1>Uw antwoord is succesvol verzonden!</h1>
     <p>Maak vandaag ook een account!</p>
     <base-button link to="/registreren">Registreren</base-button>
-  </base-card>
+  </section>
 </template>
 
 <script>
@@ -75,6 +84,7 @@ export default {
     return {
       formIsValid: true,
       formIsSent: false,
+      name: null,
       firstDate: this.firstDate,
       secondDate: this.secondDate,
       thirdDate: this.thirdDate,
@@ -114,6 +124,7 @@ export default {
         console.log("firstdate: " + this.firstDate);
 
         this.$store.dispatch("prikkrs/sendPrikkrResponse", {
+          name: this.name,
           firstDate: this.firstDate,
           secondDate: this.secondDate,
           thirdDate: this.thirdDate,
@@ -130,6 +141,11 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 25vw;
+}
 .loader {
   margin-top: 6rem;
 }
@@ -166,7 +182,7 @@ label {
 input,
 textarea {
   display: block;
-  width: 50%;
+  width: 100%;
   font: inherit;
   border: 2px solid #24b4d3;
   background-color: rgb(61, 61, 61);
@@ -190,5 +206,23 @@ textarea:focus {
 
 .error {
   color: rgb(255, 67, 67);
+}
+
+@media only screen and (max-width: 1400px) {
+  .container {
+    max-width: 50vw;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .container {
+    max-width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .container {
+    max-width: 90vw;
+  }
 }
 </style>

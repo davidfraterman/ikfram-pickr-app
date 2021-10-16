@@ -31,6 +31,7 @@ export default {
   actions: {
     async sendPrikkrResponse(_, payload) {
       const newAnswer = {
+        name: payload.name,
         firstDate: payload.firstDate,
         secondDate: payload.secondDate,
         thirdDate: payload.thirdDate,

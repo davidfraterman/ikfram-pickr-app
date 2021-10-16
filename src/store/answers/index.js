@@ -36,6 +36,7 @@ export default {
       for (const key in responseData) {
         const answer = {
           id: key,
+          name: responseData[key].name,
           firstDate: responseData[key].firstDate,
           secondDate: responseData[key].secondDate,
           thirdDate: responseData[key].thirdDate,

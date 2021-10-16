@@ -19,12 +19,14 @@
           <router-link to="/dashboard">Mijn Dashboard</router-link>
         </li>
         <li>
-          <router-link to="/nieuw">
-            <button class="newPrikkr">+ Nieuwe Prikkr</button></router-link
+          <base-button link class="logout" @click="logout"
+            >Uitloggen</base-button
           >
         </li>
         <li>
-          <button class="logout" @click="logout">Uitloggen</button>
+          <router-link to="/nieuw">
+            <button class="newPrikkr">+ Nieuwe Prikkr</button></router-link
+          >
         </li>
       </ul>
     </nav>
@@ -54,7 +56,7 @@ export default {
 header {
   width: 100%;
   height: 5rem;
-  background-color: #2c2c2c;
+  background-color: #202020;
   display: flex;
   color: white;
   justify-content: center;
@@ -78,7 +80,7 @@ button {
   padding: 0.75rem 1.5rem;
   font: inherit;
   background-color: transparent;
-  border: 2px solid #24b4d3;
+  border: none;
   color: #24b4d3;
   cursor: pointer;
   border-radius: 8px;

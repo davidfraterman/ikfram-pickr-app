@@ -8,16 +8,26 @@
     <p>{{ prikkrDesc }}</p>
 
     <section v-if="hasAnswers">
-      <p>Beste uitkomst antwoorden</p>
-
-      <li v-for="ans in answers" :key="ans.id">
-        {{ ans.firstDate }}
-      </li>
-
-      <p>Minst goede uitkomst antwoorden</p>
-      <li v-for="ans in answers" :key="ans.id">
-        {{ ans.cantDate }}
-      </li>
+      <table>
+        <thead>
+          <tr>
+            <th>Persoon</th>
+            <th>1e voorkeur</th>
+            <th>2e voorkeur</th>
+            <th>3e voorkeur</th>
+            <th>Niet beschikbaar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="ans in answers" :key="ans.id">
+            <th scope="row">{{ ans.name || "Anoniem" }}</th>
+            <td>{{ ans.firstDate }}</td>
+            <td>{{ ans.secondDate || "Geen" }}</td>
+            <td>{{ ans.thirdDate || "Geen" }}</td>
+            <td>{{ ans.cantDate }}</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
     <section v-else-if="!hasAnswers && !isLoading">
       <p>Nog niemand heeft geantwoord</p>
@@ -29,6 +39,7 @@
 export default {
   data() {
     return {
+      counter: 0,
       // id: this.$route.params.id,
       selectedPrikkr: null,
       isLoading: false,
@@ -78,6 +89,32 @@ export default {
 </script>
 
 <style scoped>
+table {
+  width: 100%;
+  overflow-x: scroll;
+  border-collapse: collapse;
+}
+td,
+th {
+  border: 2px solid rgb(20, 194, 247);
+  color: white;
+  padding: 0.5rem;
+  font-size: 95%;
+}
+td {
+  font-size: 85%;
+  text-align: center;
+}
+tr:hover {
+  background-color: rgba(65, 194, 233, 0.096);
+}
+th {
+  color: rgb(20, 194, 247);
+  font-weight: normal;
+}
+thead {
+  background-color: rgba(20, 194, 247, 0.171);
+}
 li {
   color: white;
   text-decoration: none;
@@ -85,9 +122,11 @@ li {
 p {
   color: white;
 }
+
 h2 {
-  color: white;
+  color: rgb(49, 214, 255);
   margin-top: 3rem;
+  font-size: 200%;
 }
 section {
   margin-top: 3rem;

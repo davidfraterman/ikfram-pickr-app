@@ -11,7 +11,7 @@
 
       <ul v-if="hasPrikkrs && !isLoading">
         <dashboard-item
-          v-for="item in myPrikkrs"
+          v-for="item in myPrikkrs.reverse()"
           :key="item.id"
           :title="item.title"
           :id="item.id"
@@ -27,7 +27,7 @@
         </h4>
 
         <br /><br />
-        Heeft u wel Prikkrs? Probeer dan te
+        Klopt dit niet? Probeer dan te
         <base-button class="reloadbtn" mode="secondary" @click="loadPrikkrs"
           >Herladen</base-button
         >
