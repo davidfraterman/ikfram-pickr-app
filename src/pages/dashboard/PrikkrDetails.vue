@@ -86,12 +86,21 @@
               <td class="cantdate">
                 {{
                   new Date(ans.cantDate).getDate() +
-                  " " +
-                  new Date(ans.cantDate).toLocaleString("default", {
-                    month: "long",
-                  }) +
-                  " " +
-                  new Date(ans.cantDate).getFullYear()
+                    " " +
+                    new Date(ans.cantDate).toLocaleString("default", {
+                      month: "long",
+                    }) +
+                    " " +
+                    new Date(ans.cantDate).getFullYear() ===
+                  "NaN Invalid Date NaN"
+                    ? "Geen antwoord"
+                    : new Date(ans.cantDate).getDate() +
+                      " " +
+                      new Date(ans.cantDate).toLocaleString("default", {
+                        month: "long",
+                      }) +
+                      " " +
+                      new Date(ans.cantDate).getFullYear()
                 }}
               </td>
             </tr>
@@ -101,6 +110,24 @@
           U heeft nog geen antwoorden.
         </p>
       </div>
+    </section>
+    <section>
+      <h3>Prikkr Algoritme Aanbeveling</h3>
+      <p class="recomm" v-if="answers.length > 0">
+        {{
+          new Date(highestScoringDate).getDate() +
+          " " +
+          new Date(highestScoringDate).toLocaleString("default", {
+            month: "long",
+          }) +
+          " " +
+          new Date(highestScoringDate).getFullYear()
+        }}
+      </p>
+      <p class="norecomm" v-else>
+        Nadat u wat antwoorden binnen heeft zal u hier een automatisch berekende
+        datum vinden die wij het best vinden passen.
+      </p>
     </section>
   </base-card>
 </template>
@@ -113,9 +140,9 @@ export default {
       selectedPrikkr: null,
       isLoading: false,
       isReloading: false,
-      datesWithScores: [
-        {'13-3-2020': 3, }
-      ],
+      highestScoringDate: null,
+      datesWithScores: [],
+      filteredDatesWithScores: [],
       allFirstDates: [],
       allSecondDates: [],
       allThirdDates: [],
@@ -160,13 +187,70 @@ export default {
         this.allThirdDates.push(this.answers[answer].thirdDate);
         this.allCantDates.push(this.answers[answer].cantDate);
       }
-      console.log("allFirstDates len: " + this.allFirstDates.length);
     },
     calculateDates() {
-      for (let date in this.allFirstDates) {
-        const occurence = this.getOccurrence(this.allFirstDates, this.allFirstDates[date]);
-        console.log(this.allFirstDates[date] + ": " + occurence);
+      this.calculateScore(this.allFirstDates, 3.15);
+      this.calculateScore(this.allSecondDates, 2.25);
+      this.calculateScore(this.allThirdDates, 1.2);
+      this.calculateScore(this.allCantDates, -6);
+      console.log(this.datesWithScores);
+      this.filterDatesList();
+      this.highestScore();
+    },
+    highestScore() {
+      let array = [];
+      for (let i in this.filteredDatesWithScores) {
+        array.push(this.filteredDatesWithScores[i].score);
       }
+      const max = Math.max(...array);
+      for (let j in this.filteredDatesWithScores) {
+        if (this.filteredDatesWithScores[j].score === max) {
+          this.highestScoringDate = this.filteredDatesWithScores[j].date;
+        }
+      }
+    },
+    calculateScore(allXDates, score) {
+      const datesDone = [];
+      for (let i in allXDates) {
+        const occurence = this.getOccurrence(allXDates, allXDates[i]);
+        const array = {
+          date: allXDates[i],
+          score: occurence * score,
+        };
+
+        if (
+          this.getOccurrence(datesDone, allXDates[i]) < 1 &&
+          allXDates[i] != null
+        ) {
+          this.datesWithScores.push(array);
+        }
+        datesDone.push(allXDates[i]);
+      }
+    },
+    filterDatesList() {
+      const array = [];
+      let loc = 0;
+      for (let i in this.datesWithScores) {
+        if (this.getOccurrence(array, this.datesWithScores[i].date) > 0) {
+          for (let j in this.filteredDatesWithScores) {
+            if (
+              this.filteredDatesWithScores[j].date ===
+              this.datesWithScores[i].date
+            ) {
+              loc = j;
+            }
+          }
+
+          this.filteredDatesWithScores[loc].score =
+            this.filteredDatesWithScores[loc].score +
+            this.datesWithScores[i].score;
+        } else {
+          this.filteredDatesWithScores.push(this.datesWithScores[i]);
+          const date = this.datesWithScores[i].date;
+          array.push(date);
+        }
+      }
+      console.log(this.filteredDatesWithScores);
     },
     getOccurrence(array, value) {
       return array.filter((v) => v === value).length;
@@ -190,6 +274,8 @@ export default {
       this.allSecondDates = [];
       this.allThirdDates = [];
       this.allCantDates = [];
+      this.datesWithScores = [];
+      this.filteredDatesWithScores = [];
       await this.$store.dispatch("answers/fetchAnswers", {
         creatorId: this.creatorId,
         prikkrId: this.prikkrId,
@@ -202,6 +288,15 @@ export default {
 </script>
 
 <style scoped>
+.recomm {
+  padding: 1rem;
+  background-color: rgb(46, 46, 46);
+  border-radius: 8px;
+}
+.norecomm {
+  color: grey;
+  font-size: 90%;
+}
 .noanswers {
   margin-top: 0.7rem;
   color: grey;
@@ -282,7 +377,7 @@ h3 {
   margin-bottom: 0.75rem;
 }
 h2 {
-  color: rgb(49, 214, 255);
+  color: rgb(255, 255, 255);
   margin-top: 3rem;
   font-size: 150%;
   font-weight: normal;
