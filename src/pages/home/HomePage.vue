@@ -5,7 +5,7 @@
     <p>
       Een handige en overzichtelijke datum prikker voor kleine groepen en teams.
     </p>
-    <base-button class="btn">Registreren</base-button>
+    <base-button class="btn" link to="/registreren">Registreren</base-button>
   </div>
 </template>
 

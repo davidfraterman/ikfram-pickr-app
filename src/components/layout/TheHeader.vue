@@ -81,7 +81,7 @@ button {
   font: inherit;
   background-color: transparent;
   border: none;
-  color: #24b4d3;
+  color: white;
   cursor: pointer;
   border-radius: 8px;
   display: inline-block;
@@ -105,6 +105,7 @@ h1 a:hover {
 a:active,
 a.router-link-active {
   color: #24b4d3;
+  text-decoration: none;
 }
 
 h1 a:active,

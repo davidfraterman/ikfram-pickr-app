@@ -82,7 +82,7 @@
   </section>
   <section class="container" v-else-if="formIsValid && formIsSent">
     <h1>Uw antwoord is succesvol verzonden!</h1>
-    <p>Maak vandaag ook een account!</p>
+    <p class="makeaccount-p">Maak vandaag ook een account!</p>
     <base-button link to="/registreren">Registreren</base-button>
   </section>
 </template>
@@ -150,6 +150,13 @@ export default {
 </script>
 
 <style scoped>
+.makeaccount-p {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.btn2 {
+  margin-top: 3rem;
+}
 .optional {
   color: rgb(143, 143, 143);
   font-size: 85%;
