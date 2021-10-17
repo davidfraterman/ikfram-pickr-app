@@ -204,7 +204,7 @@ export default {
       this.calculateScore(this.allFirstDates, 3.15);
       this.calculateScore(this.allSecondDates, 2.25);
       this.calculateScore(this.allThirdDates, 1.2);
-      this.calculateScore(this.allCantDates, -6);
+      this.calculateScore(this.allCantDates, -5);
     },
     calculateScore(allXDates, score) {
       const datesDone = [];
@@ -297,11 +297,11 @@ export default {
 <style scoped>
 .id--title {
   color: rgb(207, 207, 207);
-  font-size: 90%;
+  font-size: 80%;
 }
 .link {
   color: rgb(77, 190, 221);
-  font-size: 80%;
+  font-size: 70%;
 }
 
 .link:hover {

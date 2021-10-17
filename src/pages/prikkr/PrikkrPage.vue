@@ -238,6 +238,9 @@ textarea:focus {
   .container {
     max-width: 70vw;
   }
+  h1 {
+    font-size: 200%;
+  }
 }
 
 @media only screen and (max-width: 700px) {
