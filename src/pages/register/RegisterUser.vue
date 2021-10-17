@@ -77,7 +77,6 @@ export default {
   },
   methods: {
     async submitForm() {
-      console.log("submitten");
       this.formIsValid = true;
       if (
         this.email === "" ||
@@ -105,7 +104,6 @@ export default {
 
         const url = "/dashboard";
         this.$router.replace(url);
-        console.log("router");
       }
     },
     switchAuthMode() {
@@ -114,7 +112,6 @@ export default {
       } else {
         this.mode = "login";
       }
-      console.log(this.mode);
     },
   },
 };

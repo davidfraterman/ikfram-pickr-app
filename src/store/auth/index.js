@@ -8,7 +8,7 @@ export default {
   },
   mutations: {
     setUser(state, payload) {
-      state.displayName = payload.displayName
+      state.displayName = payload.displayName;
       state.token = payload.token;
       state.userId = payload.userId;
     },
@@ -41,11 +41,9 @@ export default {
       );
 
       const authResponseData = await authResponse.json();
-      console.log(authResponseData);
 
       //   error check
       if (!authResponse.ok) {
-        console.log(authResponseData);
         const error = new Error(authResponseData.message);
         throw error;
       }
@@ -74,7 +72,6 @@ export default {
 
       // error check
       if (!authResponse.ok) {
-        console.log(authResponseData);
         const error = new Error(authResponseData.message);
         throw error;
       }

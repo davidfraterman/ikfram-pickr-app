@@ -38,8 +38,6 @@ export default {
         cantDate: payload.cantDate,
       };
 
-      console.log("newanswer: " + newAnswer.firstDate);
-
       const response = await fetch(
         `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/answers/${payload.creatorId}/${payload.prikkrId}.json`,
         {
@@ -50,20 +48,14 @@ export default {
 
       const responseData = await response.json();
 
-      console.log("newanswer: " + JSON.stringify(newAnswer));
-      console.log("newanswer: " + newAnswer);
-      console.log("payload: " + payload.creatorId);
-
       if (!response.ok) {
         const error = new Error(responseData.message);
-        console.log(error);
         throw error;
       }
     },
     async fetchOnePrikkr(context, payload) {
       const creatorId = payload.creatorId;
       const prikkrId = payload.prikkrId;
-      // console.log(prikkrId + "/" + creatorId);
 
       const response = await fetch(
         `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/prikkrs/${creatorId}/${prikkrId}.json`
@@ -79,13 +71,10 @@ export default {
         dateEnd: responseData.dateEnd,
       };
 
-      console.log(prikkr);
-
       context.commit("setLinkPrikkr", prikkr);
     },
     async fetchPrikkrs(context) {
       const creatorId = context.rootGetters.userId;
-      console.log("creatorid " + creatorId);
       const token = context.rootGetters.token;
 
       const response = await fetch(
@@ -108,7 +97,6 @@ export default {
         };
         prikkrs.push(prikkr);
       }
-      console.log(prikkrs);
       context.commit("setPrikkrs", prikkrs);
     },
     async newPrikkr(context, payload) {
@@ -119,13 +107,11 @@ export default {
         dateEnd: payload.dateEnd,
       };
 
-      console.log(newPrikkr);
-      console.log("payload" + payload.creatorId);
-
-      const token = context.rootGetters.token
+      const token = context.rootGetters.token;
 
       const response = await fetch(
-        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/prikkrs/${payload.creatorId}.json?auth=` + token,
+        `https://ikfram-prikkr-webapp-default-rtdb.europe-west1.firebasedatabase.app/prikkrs/${payload.creatorId}.json?auth=` +
+          token,
         {
           method: "POST",
           body: JSON.stringify(newPrikkr),
@@ -133,11 +119,9 @@ export default {
       );
 
       const responseData = await response.json();
-      console.log(JSON.stringify(newPrikkr));
 
       if (!response.ok) {
         const error = new Error(responseData.message);
-        console.log("error");
         throw error;
       }
 

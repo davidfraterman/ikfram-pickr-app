@@ -1,11 +1,12 @@
 <template>
   <the-header></the-header>
   <div class="container">
-    <h1>De beste groeps datum <span>Prikkr</span></h1>
+    <h1>Groeps datum <span>Prikkr</span></h1>
     <p>
-      Een handige en overzichtelijke datum prikker voor kleine groepen en teams.
+      Een handige en overzichtelijke datum prikker voor grotere groepen en
+      teams.
     </p>
-    <base-button class="btn" link to="/registreren">Registreren</base-button>
+    <base-button class="btn" link to="/registreren">Start Nu</base-button>
   </div>
 </template>
 

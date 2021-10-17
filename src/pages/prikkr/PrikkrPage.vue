@@ -73,7 +73,7 @@
       </div>
 
       <p class="errors" v-if="!formIsValid">
-        Please enter a valid email and non-empty message.
+        Vul alstublieft minimaal uw 1e voorkeur in.
       </p>
       <div class="actions">
         <base-button class="btn">Verzend</base-button>
@@ -93,17 +93,16 @@ export default {
     return {
       formIsValid: true,
       formIsSent: false,
-      name: null,
-      firstDate: this.firstDate,
-      secondDate: this.secondDate,
-      thirdDate: this.thirdDate,
-      cantDate: this.cantDate,
+      name: "",
+      firstDate: "",
+      secondDate: "",
+      thirdDate: "",
+      cantDate: "",
       isLoading: false,
     };
   },
   created() {
     this.fetchPrikkr();
-    console.log(this.creatorId);
   },
   computed: {
     prikkr() {
@@ -125,13 +124,15 @@ export default {
       });
       this.isLoading = false;
     },
+
     send() {
       this.formIsValid = true;
-      if (this.firstDate === null) {
+
+      if (this.firstDate === "") {
         this.formIsValid = false;
       } else {
-        console.log("firstdate: " + this.firstDate);
-
+        this.formIsValid = true;
+        console.log(this.formIsValid);
         this.$store.dispatch("prikkrs/sendPrikkrResponse", {
           name: this.name,
           firstDate: this.firstDate,
@@ -141,7 +142,6 @@ export default {
           creatorId: this.creatorId,
           prikkrId: this.prikkrId,
         });
-
         this.formIsSent = true;
       }
     },
@@ -224,7 +224,7 @@ textarea:focus {
   margin-right: 1rem;
 }
 
-.error {
+.errors {
   color: rgb(255, 67, 67);
 }
 

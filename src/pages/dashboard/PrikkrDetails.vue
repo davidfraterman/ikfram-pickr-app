@@ -5,7 +5,7 @@
   <base-card v-if="!isLoading">
     <h1>Mijn Resultaten</h1>
     <h2>{{ prikkrTitle }}</h2>
-    <p>{{ prikkrDesc }}</p>
+    <p class="desc">{{ prikkrDesc }}</p>
     <section>
       <h3>Automatische Aanbeveling</h3>
       <p class="recomm" v-if="answers.length > 0">
@@ -283,6 +283,9 @@ export default {
 </script>
 
 <style scoped>
+.desc {
+  color: rgb(196, 196, 196);
+}
 .how {
   color: grey;
   font-size: 80%;

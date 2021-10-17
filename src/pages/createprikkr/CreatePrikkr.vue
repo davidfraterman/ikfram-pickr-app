@@ -2,7 +2,7 @@
   <section class="container">
     <h1>Nieuwe Prikkr</h1>
     <form @submit.prevent="submitForm">
-      <div class="form-control">
+      <div>
         <label for="title">Titel</label>
         <input
           type="text"
@@ -11,7 +11,7 @@
           v-model.trim="title"
         />
       </div>
-      <div class="form-control">
+      <div>
         <label for="description">Beschrijving</label>
         <textarea
           rows="4"
@@ -20,7 +20,7 @@
           v-model.trim="description"
         ></textarea>
       </div>
-      <div class="form-control">
+      <div>
         <label for="dateStart">Vanaf</label>
         <input
           type="date"
@@ -38,7 +38,7 @@
         />
       </div>
       <p class="errors" v-if="!formIsValid">
-        Een of meerdere verplichte velden zijn leeg.
+        Een of meer velden zijn leeg.
       </p>
       <div class="actions">
         <base-button class="btn">Maak aan</base-button>

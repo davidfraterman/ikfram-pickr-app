@@ -66,7 +66,6 @@ export default {
   },
   methods: {
     async loadPrikkrs() {
-      console.log(this.hasPrikkrs);
       this.isLoading = true;
 
       try {
@@ -76,7 +75,6 @@ export default {
       }
 
       this.isLoading = false;
-      console.log(this.hasPrikkrs);
     },
   },
 };

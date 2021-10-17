@@ -20,8 +20,6 @@ export default {
   },
   actions: {
     async fetchAnswers(context, payload) {
-      console.log("creatorid " + payload.creatorId + " " + payload.prikkrId);
-
       const token = context.rootGetters.token;
 
       const response = await fetch(
@@ -30,7 +28,6 @@ export default {
       );
 
       const responseData = await response.json();
-      console.log(responseData);
       const answers = [];
 
       for (const key in responseData) {
@@ -44,7 +41,6 @@ export default {
         };
         answers.push(answer);
       }
-      console.log(answers);
       context.commit("setAnswers", answers);
     },
   },
