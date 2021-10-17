@@ -48,6 +48,9 @@ export default {
         throw error;
       }
 
+      localStorage.setItem("token", authResponseData.idToken);
+      localStorage.setItem("userId", authResponseData.localId);
+
       // setUser mutatie
       context.commit("setUser", {
         token: authResponseData.idToken,
@@ -82,11 +85,24 @@ export default {
       });
     },
     logout(context) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userId");
       // setUser mutatie
       context.commit("setUser", {
         token: null,
         userId: null,
       });
+    },
+    tryLogin(context) {
+      const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userId");
+
+      if (token && userId) {
+        context.commit("setUser", {
+          token: token,
+          userId: userId,
+        });
+      }
     },
   },
 };

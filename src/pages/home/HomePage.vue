@@ -15,15 +15,19 @@
   margin-top: 4rem;
   width: 80%;
   margin: 0 auto;
+  display: grid;
 }
 
 h1 {
   margin-top: 10rem;
+  text-align: center;
 }
 
 p {
   color: rgb(165, 165, 165);
   font-size: 110%;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 span {
@@ -32,5 +36,6 @@ span {
 
 .btn {
   margin-top: 2rem;
+  margin: 0 auto;
 }
 </style>
