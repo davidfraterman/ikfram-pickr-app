@@ -155,7 +155,6 @@ li {
   header {
     width: 100%;
     height: auto;
-    background-color: #363636;
     display: block;
     padding-bottom: 2rem;
   }
