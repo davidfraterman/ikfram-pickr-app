@@ -4,6 +4,12 @@
   </base-card>
   <base-card v-if="!isLoading">
     <h1>Mijn Resultaten</h1>
+    <p>
+      <span class="id--title">Deelbare Link: </span>
+      <router-link name="a" class="link" id="urlLink" :to="answerLink">
+        {{ shareLink }}</router-link
+      >
+    </p>
     <h2>{{ prikkrTitle }}</h2>
     <p class="desc">{{ prikkrDesc }}</p>
     <section>
@@ -148,6 +154,12 @@ export default {
     };
   },
   computed: {
+    shareLink() {
+      return "prikkr.netlify.app" + this.answerLink;
+    },
+    answerLink() {
+      return "/prikkr/" + this.creatorId + "/" + this.prikkrId;
+    },
     answers() {
       return this.$store.getters["answers/answers"];
     },
@@ -283,6 +295,18 @@ export default {
 </script>
 
 <style scoped>
+.id--title {
+  color: rgb(207, 207, 207);
+  font-size: 90%;
+}
+.link {
+  color: rgb(77, 190, 221);
+  font-size: 80%;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
 .desc {
   color: rgb(196, 196, 196);
 }

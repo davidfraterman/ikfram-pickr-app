@@ -12,7 +12,7 @@
       >Resultaten</base-button
     >
     <div class="id">
-      <span class="id--title">Deelbare Link: </span>
+      <span class="id--title">Deel deze link met uitgenodigden: </span>
       <router-link name="a" class="link" id="urlLink" :to="answerLink">
         {{ shareLink }}</router-link
       >
@@ -42,6 +42,9 @@ export default {
 </script>
 
 <style scoped>
+.id--title {
+  color: rgb(204, 204, 204);
+}
 .link {
   color: rgb(77, 190, 221);
 }

@@ -32,6 +32,7 @@ html {
 
 body {
   background-color: rgb(58, 58, 58);
+  min-height: 100vh;
 }
 
 h1 {
