@@ -35,6 +35,11 @@
         >{{ switchLoginOrSignup }}</base-button
       >
     </form>
+    <br />
+    <p style="color: white; font-size: 12px">
+      Voorbeeld account: <br /><br />email: voor@beeld.com <br />
+      password: voorbeeld
+    </p>
   </section>
 </template>
 
